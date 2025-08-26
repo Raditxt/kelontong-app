@@ -1,65 +1,113 @@
-# 🛒 Kelontong App
+🏪 Toko Kelontong App
+Aplikasi web sederhana untuk membantu pengelolaan toko kelontong. Fokus utama: mencatat transaksi, memantau stok barang, dan menampilkan ringkasan omzet dalam bentuk dashboard yang mudah dipahami.
 
-Aplikasi web sederhana untuk membantu pengelolaan **stok barang, transaksi, harga beli/jual, dan expired date** di toko kelontong.  
-Dibuat dengan tujuan memudahkan operasional toko sekaligus sebagai project pembelajaran dalam membangun aplikasi **fullstack (Next.js + FastAPI)**.
+🚀 Tech Stack
+Backend: FastAPI (Python)
 
----
+Database: PostgreSQL (pakai SQLAlchemy + Alembic untuk migrasi)
 
-## 🚀 Features (MVP)
-- 📦 **Manajemen Barang (CRUD)** → tambah, edit, hapus, lihat stok.  
-- 🧾 **Catat Transaksi** → pembelian (stok masuk) & penjualan (stok keluar).  
-- 📊 **Dashboard Stok** → menampilkan daftar barang + stok saat ini.  
-- ⏰ **Alert** → stok minim & barang hampir kadaluarsa.  
-- 💾 **Histori Harga Beli** → mencatat harga grosir untuk menentukan harga jual.  
+Frontend: React + Tailwind CSS
 
----
+Deployment: (Planned) Docker + Cloud Hosting (Railway, Render, Supabase, dsb.)
 
-## 📐 Tech Stack
-**Frontend**
-- [Next.js](https://nextjs.org/) – React Framework  
-- [Tailwind CSS](https://tailwindcss.com/) – Styling UI  
+📂 Struktur Proyek
+toko-kelontong-app/
+├── backend/
+│   ├── app/
+│   │   ├── main.py          # Entry point FastAPI
+│   │   ├── models.py        # Database models
+│   │   ├── schemas.py       # Pydantic schemas
+│   │   ├── database.py      # DB connection
+│   │   └── routers/         # API routes (products, transactions, dashboard)
+│   └── requirements.txt     # Backend dependencies
+│
+├── frontend/
+│   ├── src/                 # React source code
+│   ├── public/              # Public assets for React
+│   └── package.json         # Frontend dependencies
+│
+├── docker-compose.yml       # (Optional, planned for local containerization)
+└── README.md                # Dokumentasi proyek ini
 
-**Backend**
-- [FastAPI](https://fastapi.tiangolo.com/) – REST API  
-- [SQLAlchemy](https://www.sqlalchemy.org/) – ORM  
-- [SQLite](https://www.sqlite.org/) (development) → PostgreSQL (production)  
+⚙️ Setup Development
+Untuk menjalankan aplikasi ini secara lokal, ikuti langkah-langkah berikut:
 
-**Deployment**
-- Vercel (frontend)  
-- Render / Railway (backend)  
+1. Clone Repository
+git clone <URL_REPO_ANDA>
+cd toko-kelontong-app
 
----
+Ganti <URL_REPO_ANDA> dengan URL repository GitHub atau Git Anda.
 
-## 📂 Project Structure
-kelontong-app/
-├── backend/ # FastAPI backend
-├── frontend/ # Next.js frontend
-├── docs/ # Dokumentasi (ERD, UI sketsa, catatan)
-├── .gitignore
-└── README.md
+2. Backend (FastAPI)
+Pastikan Anda memiliki Python dan pip terinstal.
 
-yaml
-Copy
-Edit
+# Masuk ke direktori backend
+cd backend
 
----
+# Buat dan aktifkan virtual environment
+python -m venv venv
+# Untuk Mac/Linux
+source venv/bin/activate
+# Untuk Windows
+venv\Scripts\activate
 
-## 📌 Roadmap (Tahap Pengembangan)
+# Instal semua dependensi
+pip install -r requirements.txt
 
-### ✅ Phase 1 – MVP (Core Features)
-- [ ] CRUD Barang
-- [ ] Input Transaksi (beli/jual)
-- [ ] Dashboard Stok
-- [ ] Alert Stok Minim & Expired
+# Jalankan server FastAPI
+uvicorn app.main:app --reload
 
-### 🔜 Phase 2 – Advanced
-- [ ] Laporan penjualan harian/bulanan (export Excel/PDF)
-- [ ] Multi-user (admin / kasir)
-- [ ] Grafik tren penjualan
-- [ ] Integrasi AI (prediksi stok & harga)
+Server backend akan berjalan di http://127.0.0.1:8000. Anda bisa mengakses dokumentasi API interaktif (Swagger UI) di http://127.0.0.1:8000/docs.
 
----
+3. Frontend (React + Tailwind)
+Pastikan Anda memiliki Node.js dan npm terinstal.
 
-## 👨‍💻 Author
-- **Raditya Mulya** – [GitHub Profile](https://github.com/Raditxt)  
-Project personal untuk membantu usaha keluarga & belajar Fullstack Development + AI Engineering.
+# Pindah ke direktori frontend
+cd ../frontend # Jika Anda masih di direktori backend
+# atau
+# cd frontend # Jika Anda di root direktori proyek
+
+# Instal semua dependensi
+npm install
+
+# Jalankan aplikasi React
+npm start
+
+Aplikasi frontend akan berjalan di http://localhost:3000.
+
+📊 Fitur (Planned)
+Berikut adalah beberapa fitur utama yang akan dikembangkan:
+
+Dashboard omzet harian & bulanan yang mudah dipahami (untuk orang tua).
+
+Manajemen Stok (tambah, edit, hapus barang) dengan detail harga beli, harga jual, dan stok awal.
+
+Pencatatan Transaksi (penjualan/pembelian) yang tercatat otomatis.
+
+Laporan transaksi harian & bulanan.
+
+Notifikasi untuk barang yang stoknya hampir habis atau kadaluarsa.
+
+Export Laporan ke format CSV / PDF.
+
+Analisis Bisnis (barang fast-moving, slow-moving, profit bulanan).
+
+👥 Catatan
+Proyek ini masih dalam tahap awal (planning & setup) dan akan terus dikembangkan secara bertahap.
+Tujuan utamanya adalah menyediakan solusi inventory yang scalable dan maintainable untuk kebutuhan monitoring toko kelontong keluarga.
+
+🤝 Kontribusi
+Sangat terbuka untuk kontribusi! Jika Anda tertarik untuk membantu pengembangan, silakan:
+
+Fork repository ini.
+
+Buat branch baru: git checkout -b feature/nama-fitur-anda
+
+Lakukan perubahan dan commit: git commit -m 'feat: menambahkan fitur baru'
+
+Push ke branch Anda: git push origin feature/nama-fitur-anda
+
+Buat Pull Request.
+
+📄 Lisensi
+Proyek ini dilisensikan di bawah Lisensi MIT.
