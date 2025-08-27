@@ -5,9 +5,9 @@ from .database import Base
 
 
 class RoleEnum(str, enum.Enum):
-admin = "admin"
-kasir = "kasir"
-viewer = "viewer"
+    admin = "admin"
+    kasir = "kasir"
+    viewer = "viewer"
 
 
 class User(Base):

@@ -1,22 +1,28 @@
 from sqlalchemy import create_engine
-from sqlalchemy.orm import sessionmaker, declarative_base
+from sqlalchemy.orm import sessionmaker, DeclarativeBase
 import os
 
+
+# Hapus koma (,) di akhir baris ini
 DATABASE_URL = os.getenv("DATABASE_URL", "sqlite:///./toko.db")
 
-engine = create engine (
-    DATABASE URL,
-    connect args={"check_same_thread": False} if DATABASE_URL.startwith("sqlite://") else {},
+engine = create_engine(
+    DATABASE_URL,
+    connect_args={"check_same_thread": False} if DATABASE_URL.startswith("sqlite") else {},
 )
+
 
 SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
 
-class Base(declarative_base()):
+
+class Base(DeclarativeBase):
     pass
+
 
 # Dependency for routes
 from fastapi import Depends
 from typing import Generator
+
 
 def get_db() -> Generator:
     db = SessionLocal()
@@ -24,4 +30,3 @@ def get_db() -> Generator:
         yield db
     finally:
         db.close()
-        
