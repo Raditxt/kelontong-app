@@ -1,6 +1,13 @@
-fastapi
-uvicorn
-psycopg2-binary
-sqlalchemy
-alembic
-python-dotenv
+# ─────────────────────────────────────────────────────────────
+# requirements.txt
+# ─────────────────────────────────────────────────────────────
+# fastapi framework & ASGI server
+fastapi==0.110.2
+uvicorn[standard]==0.30.1
+# ORM & DB
+SQLAlchemy==2.0.30
+alembic==1.13.1
+# Data validation (FastAPI<0.111 uses Pydantic v1 by default)
+pydantic==1.10.15
+# Utils
+python-dotenv==1.0.1
