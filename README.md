@@ -1,16 +1,17 @@
-🏪 Toko Kelontong App
+# 🏪 Toko Kelontong App
+
 Aplikasi web sederhana untuk membantu pengelolaan toko kelontong. Fokus utama: mencatat transaksi, memantau stok barang, dan menampilkan ringkasan omzet dalam bentuk dashboard yang mudah dipahami.
 
-🚀 Tech Stack
-Backend: FastAPI (Python)
+## 🚀 Tech Stack
 
-Database: PostgreSQL (pakai SQLAlchemy + Alembic untuk migrasi)
+- **Backend**: FastAPI (Python)
+- **Database**: PostgreSQL (pakai SQLAlchemy + Alembic untuk migrasi)
+- **Frontend**: React + Tailwind CSS
+- **Deployment**: (Planned) Docker + Cloud Hosting (Railway, Render, Supabase, dsb.)
 
-Frontend: React + Tailwind CSS
+## 📂 Struktur Proyek
 
-Deployment: (Planned) Docker + Cloud Hosting (Railway, Render, Supabase, dsb.)
-
-📂 Struktur Proyek
+```
 toko-kelontong-app/
 ├── backend/
 │   ├── app/
@@ -28,24 +29,32 @@ toko-kelontong-app/
 │
 ├── docker-compose.yml       # (Optional, planned for local containerization)
 └── README.md                # Dokumentasi proyek ini
+```
 
-⚙️ Setup Development
+## ⚙️ Setup Development
+
 Untuk menjalankan aplikasi ini secara lokal, ikuti langkah-langkah berikut:
 
-1. Clone Repository
+### 1. Clone Repository
+
+```bash
 git clone <URL_REPO_ANDA>
 cd toko-kelontong-app
+```
 
-Ganti <URL_REPO_ANDA> dengan URL repository GitHub atau Git Anda.
+> **Catatan**: Ganti `<URL_REPO_ANDA>` dengan URL repository GitHub atau Git Anda.
 
-2. Backend (FastAPI)
-Pastikan Anda memiliki Python dan pip terinstal.
+### 2. Backend (FastAPI)
 
+**Prerequisites**: Pastikan Anda memiliki Python dan pip terinstal.
+
+```bash
 # Masuk ke direktori backend
 cd backend
 
 # Buat dan aktifkan virtual environment
 python -m venv venv
+
 # Untuk Mac/Linux
 source venv/bin/activate
 # Untuk Windows
@@ -56,58 +65,65 @@ pip install -r requirements.txt
 
 # Jalankan server FastAPI
 uvicorn app.main:app --reload
+```
 
-Server backend akan berjalan di http://127.0.0.1:8000. Anda bisa mengakses dokumentasi API interaktif (Swagger UI) di http://127.0.0.1:8000/docs.
+✅ **Server backend akan berjalan di**: `http://127.0.0.1:8000`
 
-3. Frontend (React + Tailwind)
-Pastikan Anda memiliki Node.js dan npm terinstal.
+📚 **API Documentation**: Akses dokumentasi API interaktif (Swagger UI) di `http://127.0.0.1:8000/docs`
 
+### 3. Frontend (React + Tailwind)
+
+**Prerequisites**: Pastikan Anda memiliki Node.js dan npm terinstal.
+
+```bash
 # Pindah ke direktori frontend
-cd ../frontend # Jika Anda masih di direktori backend
+cd ../frontend  # Jika Anda masih di direktori backend
 # atau
-# cd frontend # Jika Anda di root direktori proyek
+cd frontend     # Jika Anda di root direktori proyek
 
 # Instal semua dependensi
 npm install
 
 # Jalankan aplikasi React
 npm start
+```
 
-Aplikasi frontend akan berjalan di http://localhost:3000.
+✅ **Aplikasi frontend akan berjalan di**: `http://localhost:3000`
 
-📊 Fitur (Planned)
+## 📊 Fitur (Planned)
+
 Berikut adalah beberapa fitur utama yang akan dikembangkan:
 
-Dashboard omzet harian & bulanan yang mudah dipahami (untuk orang tua).
+### 📈 Dashboard & Reporting
+- **Dashboard omzet** harian & bulanan yang mudah dipahami (untuk orang tua)
+- **Laporan transaksi** harian & bulanan
+- **Export Laporan** ke format CSV / PDF
 
-Manajemen Stok (tambah, edit, hapus barang) dengan detail harga beli, harga jual, dan stok awal.
+### 📦 Manajemen Inventory  
+- **Manajemen Stok** (tambah, edit, hapus barang) dengan detail harga beli, harga jual, dan stok awal
+- **Notifikasi** untuk barang yang stoknya hampir habis atau kadaluarsa
 
-Pencatatan Transaksi (penjualan/pembelian) yang tercatat otomatis.
+### 💰 Transaksi & Penjualan
+- **Pencatatan Transaksi** (penjualan/pembelian) yang tercatat otomatis
 
-Laporan transaksi harian & bulanan.
+### 📊 Analisis Bisnis
+- **Analisis Bisnis** (barang fast-moving, slow-moving, profit bulanan)
 
-Notifikasi untuk barang yang stoknya hampir habis atau kadaluarsa.
+## 👥 Catatan
 
-Export Laporan ke format CSV / PDF.
+- Proyek ini masih dalam **tahap awal** (planning & setup) dan akan terus dikembangkan secara bertahap
+- Tujuan utamanya adalah menyediakan solusi inventory yang **scalable** dan **maintainable** untuk kebutuhan monitoring toko kelontong keluarga
 
-Analisis Bisnis (barang fast-moving, slow-moving, profit bulanan).
+## 🤝 Kontribusi
 
-👥 Catatan
-Proyek ini masih dalam tahap awal (planning & setup) dan akan terus dikembangkan secara bertahap.
-Tujuan utamanya adalah menyediakan solusi inventory yang scalable dan maintainable untuk kebutuhan monitoring toko kelontong keluarga.
-
-🤝 Kontribusi
 Sangat terbuka untuk kontribusi! Jika Anda tertarik untuk membantu pengembangan, silakan:
 
-Fork repository ini.
+1. **Fork** repository ini
+2. **Buat branch baru**: `git checkout -b feature/nama-fitur-anda`
+3. **Lakukan perubahan** dan commit: `git commit -m 'feat: menambahkan fitur baru'`
+4. **Push ke branch** Anda: `git push origin feature/nama-fitur-anda`
+5. **Buat Pull Request**
 
-Buat branch baru: git checkout -b feature/nama-fitur-anda
+## 📄 Lisensi
 
-Lakukan perubahan dan commit: git commit -m 'feat: menambahkan fitur baru'
-
-Push ke branch Anda: git push origin feature/nama-fitur-anda
-
-Buat Pull Request.
-
-📄 Lisensi
-Proyek ini dilisensikan di bawah Lisensi MIT.
+Proyek ini dilisensikan di bawah **Lisensi MIT**.
