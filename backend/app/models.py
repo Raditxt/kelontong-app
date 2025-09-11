@@ -3,7 +3,6 @@ from sqlalchemy.orm import relationship, Mapped, mapped_column
 import enum
 from .database import Base
 
-
 class RoleEnum(str, enum.Enum):
     admin = "admin"
     kasir = "kasir"

@@ -5,7 +5,7 @@ from .routers import products, transactions, dashboard
 import os
 
 
-Base.metadata.create_all(bind=engine) # for dev; use Alembic for real migrations
+Base.metadata.create_all(bind=engine)  # for dev; use Alembic for real migrations
 
 
 app = FastAPI(title="Toko Kelontong API", version="0.1.0")
@@ -14,17 +14,17 @@ app = FastAPI(title="Toko Kelontong API", version="0.1.0")
 # CORS
 origins = os.getenv("CORS_ORIGINS", "http://localhost:3000").split(",")
 app.add_middleware(
-CORSMiddleware,
-allow_origins=[o.strip() for o in origins],
-allow_credentials=True,
-allow_methods=["*"],
-allow_headers=["*"],
+    CORSMiddleware,
+    allow_origins=[o.strip() for o in origins],
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
 )
 
 
 @app.get("/")
 def root():
-return {"message": "API OK"}
+    return {"message": "API OK"}
 
 
 # Routers

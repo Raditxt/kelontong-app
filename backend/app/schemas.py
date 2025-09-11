@@ -1,65 +1,79 @@
-from pydantic import BaseModel, condecimal
-class Config:
-orm_mode = True
+from typing import Optional, List, Annotated
+from pydantic import BaseModel, Field
+from datetime import date, datetime
+from enum import Enum
+from decimal import Decimal
+
+
+# 🔹 Definisikan type alias pakai Annotated
+Decimal12_2 = Annotated[Decimal, Field(max_digits=12, decimal_places=2)]
+Decimal14_2 = Annotated[Decimal, Field(max_digits=14, decimal_places=2)]
+
+
+class TxType(str, Enum):
+    sale = "sale"
+    purchase = "purchase"
 
 
 class ProductBase(BaseModel):
-name: str
-sku: Optional[str] = None
-stock: int = 0
-price_buy: condecimal(max_digits=12, decimal_places=2) = 0
-price_sell: condecimal(max_digits=12, decimal_places=2) = 0
-expired_date: Optional[date] = None
-supplier_id: Optional[int] = None
+    name: str
+    sku: Optional[str] = None
+    stock: int = 0
+    price_buy: Decimal12_2 = 0
+    price_sell: Decimal12_2 = 0
+    expired_date: Optional[date] = None
+    supplier_id: Optional[int] = None
 
 
 class ProductCreate(ProductBase):
-pass
+    pass
 
 
 class ProductUpdate(BaseModel):
-name: Optional[str]
-sku: Optional[str]
-stock: Optional[int]
-price_buy: Optional[condecimal(max_digits=12, decimal_places=2)]
-price_sell: Optional[condecimal(max_digits=12, decimal_places=2)]
-expired_date: Optional[date]
-supplier_id: Optional[int]
+    name: Optional[str] = None
+    sku: Optional[str] = None
+    stock: Optional[int] = None
+    price_buy: Optional[Decimal12_2] = None
+    price_sell: Optional[Decimal12_2] = None
+    expired_date: Optional[date] = None
+    supplier_id: Optional[int] = None
 
 
 class ProductOut(ProductBase):
-id: int
-class Config:
-orm_mode = True
+    id: int
+
+    class Config:
+        orm_mode = True
 
 
 class TransactionItemIn(BaseModel):
-product_id: int
-qty: int
-price: condecimal(max_digits=12, decimal_places=2)
+    product_id: int
+    qty: int
+    price: Decimal12_2
 
 
 class TransactionCreate(BaseModel):
-type: TxType
-items: List[TransactionItemIn]
+    type: TxType
+    items: List[TransactionItemIn]
 
 
 class TransactionOut(BaseModel):
-id: int
-type: TxType
-total_amount: condecimal(max_digits=14, decimal_places=2)
-date: datetime
-class Config:
-orm_mode = True
+    id: int
+    type: TxType
+    total_amount: Decimal14_2
+    date: datetime
+
+    class Config:
+        orm_mode = True
 
 
 class DashboardDailyOut(BaseModel):
-revenue_today: condecimal(max_digits=14, decimal_places=2)
-total_transactions: int
-top_products: List[dict]
-low_stock: List[dict]
+    revenue_today: Decimal14_2
+    total_transactions: int
+    top_products: List[dict]
+    low_stock: List[dict]
 
 
 class AlertsOut(BaseModel):
-low_stock: List[dict]
-expiring: List[dict]
+    low_stock: List[dict]
+    expiring: List[dict]
